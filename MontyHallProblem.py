@@ -8,7 +8,12 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--simulations', type=int, default=1000, help='number of simulations')
+    parser.add_argument('--seed', type=int, default=None, help='random seed')
     args = parser.parse_args()
+
+    if args.seed is not None:
+        random.seed(args.seed)
+
     n_simulation = args.simulations
 
     count_changed_wins = 0
