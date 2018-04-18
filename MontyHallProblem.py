@@ -25,22 +25,25 @@ if __name__ == '__main__':
 
         player_selected = random.randrange(3)
 
-
-        remaining_doors = [r for r in range(3) if r is not player_selected]
+        doors_unselected = [r for r in range(3) if r is not player_selected]
+        assert len(doors_unselected) == 2
 
         if player_selected == truth:
-            master_opened = random.choice(remaining_doors)
-        elif remaining_doors[0] == truth:
-            master_opened = remaining_doors[1]
-        elif remaining_doors[1] == truth:
-            master_opened = remaining_doors[0]
+            master_selected = random.choice(doors_unselected)
+        elif doors_unselected[0] == truth:
+            master_selected = doors_unselected[1]
+        elif doors_unselected[1] == truth:
+            master_selected = doors_unselected[0]
         else:
             raise
 
-        remaining_doors = [r for r in remaining_doors if r is not master_opened]
+        doors_unselected.remove(master_selected)
+        assert len(doors_unselected) == 1
+
+        another_door = doors_unselected[0]
 
 
-        if remaining_doors[0] == truth:
+        if another_door == truth:
             count_changed_wins += 1
         elif player_selected == truth:
             count_unchanged_wins += 1
