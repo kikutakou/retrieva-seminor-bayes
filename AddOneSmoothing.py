@@ -27,14 +27,14 @@ if __name__ == '__main__':
         mu_truth = random.random()
 
         # exprimental result
-        count_man = 0.0
+        count_man = 0
         for j in range(n_trial):
             if random.random() < mu_truth:
                 count_man += 1
 
         # estimation mle:Maximum Likelifood Estimation / smo:Smoothing
-        mu_mle = count_man / n_trial
-        mu_smo = (count_man + 1) / (n_trial + 2)
+        mu_mle = float(count_man) / n_trial
+        mu_smo = (float(count_man) + 1) / (n_trial + 2)
 
 
         # total
